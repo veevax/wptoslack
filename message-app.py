@@ -7,7 +7,7 @@ import requests
 import os 
 
 slackurl = os.environ['SLACK_API_KEY']
-port = os.environ['PORT']
+port = int(os.environ['PORT'])
 
 app = Flask(__name__)
 
