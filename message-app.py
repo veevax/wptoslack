@@ -19,12 +19,14 @@ def create_task():
     author = str(request.form.get("comment_author"))
     content = str(request.form.get("comment_content"))
     date = str(request.form.get("comment_date"))
-    approved = bool(request.form.get("comment_approved"))
+    approved = str(request.form.get("comment_approved"))
     hook = bool(request.form.get("hook"))
 
     attachments = {"author_name": author, "text": content, "title": "Posted on " + date}
 
     data = {"username": "wordpresshelper","text":"New comment needs your approval!","icon_emoji": ":squirrel:", "attachments":[attachments]}
+
+    print(approved)
 
     if approved:
     	data["text"] = "New comment has been posted"
