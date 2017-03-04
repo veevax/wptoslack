@@ -19,17 +19,17 @@ def create_task():
     author = str(request.form.get("comment_author"))
     content = str(request.form.get("comment_content"))
     date = str(request.form.get("comment_date"))
-    approved = str(request.form.get("comment_approved"))
+    approved = int(request.form.get("comment_approved"))
     hook = bool(request.form.get("hook"))
 
     attachments = {"author_name": author, "text": content, "title": "Posted on " + date}
 
     data = {"username": "wordpresshelper","text":"New comment needs your approval!","icon_emoji": ":squirrel:", "attachments":[attachments]}
 
-    if approved:
-    	data["text"] = "New comment has been posted" + "Approved tag: " + approved
+    if approved == 1:
+    	data["text"] = "New comment has been posted"
     else:
-    	data["text"] = "New comment needs your approval!" + "Approved tag: " + approved
+    	data["text"] = "New comment needs your approval!"
 
     r = requests.post(slackurl, data=json.dumps(data), headers=headers)
 
