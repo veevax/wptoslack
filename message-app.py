@@ -26,12 +26,10 @@ def create_task():
 
     data = {"username": "wordpresshelper","text":"New comment needs your approval!","icon_emoji": ":squirrel:", "attachments":[attachments]}
 
-    print(approved)
-
     if approved:
-    	data["text"] = "New comment has been posted"
+    	data["text"] = "New comment has been posted" + "Approved tag: " + approved
     else:
-    	data["text"] = "New comment needs your approval!"
+    	data["text"] = "New comment needs your approval!" + "Approved tag: " + approved
 
     r = requests.post(slackurl, data=json.dumps(data), headers=headers)
 
