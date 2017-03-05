@@ -24,12 +24,15 @@ def create_task():
 
     attachments = {"author_name": author, "text": content, "title": "Posted on " + date}
 
-    data = {"username": "wordpresshelper","text":"New comment needs your approval!","icon_emoji": ":squirrel:", "attachments":[attachments]}
+    data = {"username": "wordpresshelper","icon_emoji": ":squirrel:"}
 
     if approved == 1:
     	data["text"] = "New comment has been posted"
     else:
     	data["text"] = "New comment needs your approval!"
+    	attachments["color"] = "warning"
+
+    data["attachments"] = [attachments]
 
     r = requests.post(slackurl, data=json.dumps(data), headers=headers)
 
